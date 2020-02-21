@@ -6,15 +6,7 @@ function fish_prompt
   if not set -q __fish_prompt_hostname
     set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
   end
-  if not set -q __fish_prompt_char
-    switch (id -u)
-      case 0
-        set -g __fish_prompt_char \u276f\u276f
-      case '*'
-        set -g __fish_prompt_char »
-    end
-  end
-
+  
   # Setup colors
   set -l normal (set_color normal)
   set -l cyan (set_color cyan)
@@ -36,10 +28,16 @@ function fish_prompt
   set -g __fish_git_prompt_showcolorhints true
 
   # Color prompt char red for non-zero exit status
-  set -l pcolor $cyan
+
+
   if [ $last_status -ne 0 ]
+    set -g __fish_prompt_char [$last_status]»
     set pcolor $bred
+  else
+    set -g __fish_prompt_char »
+    set pcolor $cyan
   end
+    
 
   # Top
   echo -n $cyan$USER$normal at $yellow$__fish_prompt_hostname$normal in $bred(prompt_pwd)$normal
