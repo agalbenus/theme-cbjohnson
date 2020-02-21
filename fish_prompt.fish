@@ -26,10 +26,17 @@ function fish_prompt
 
   # Configure __fish_git_prompt
   set -g __fish_git_prompt_show_informative_status true
+  set -g __fish_git_prompt_char_dirtystate "+"
+  set -g __fish_git_prompt_char_untrackedfiles ".."
+  set -g __fish_git_prompt_char_invalidstate "x"
+  set -g __fish_git_prompt_char_cleanstate "clean"
+  set -g __fish_git_prompt_char_upstream_ahead "|up+"
+  set -g __fish_git_prompt_char_upstream_behind "|up-"
+
   set -g __fish_git_prompt_showcolorhints true
 
   # Color prompt char red for non-zero exit status
-  set -l pcolor $bpurple
+  set -l pcolor $cyan
   if [ $last_status -ne 0 ]
     set pcolor $bred
   end
