@@ -31,7 +31,7 @@ function fish_prompt
 
 
   if [ $last_status -ne 0 ]
-    set -g __fish_prompt_char [$last_status]»
+    set -g __fish_prompt_char [$last_status] »
     set pcolor $bred
   else
     set -g __fish_prompt_char »
